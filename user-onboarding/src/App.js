@@ -45,6 +45,41 @@ const [ formErrors, setFormErrors ] = useState(initialFormErrors)
 //set state for disabled button
 const [ disabled, setDisabled ] = useState(initialDisabled)
 
+//get the users
+
+const getUsers = () => {
+  axios.get('https://reqres.in/api/users')
+  .then(res => {
+    setUsers(res.data.data)
+    console.log(res.data.data)
+  })
+  .catch(err => {
+    debugger
+  })
+}
+
+const postNewUser = newUser => {
+  axios.post('https://reqres.in/api/users', newUser)
+  .then(res => {
+    setUsers(res.data.data)
+    console.log(res.data.data)
+  })
+  .catch(err => {
+    debugger
+  })
+  .finally(() => {// reset back to start?
+    setFormValues(initialFormValues)
+  })
+}
+
+//Event handlers
+
+const onInputChange = evt => {
+  const fname = evt.target.fname
+  const lname = evt.target.lname
+  const value = evt.target.value
+}
+
 
   return (
     <div>
