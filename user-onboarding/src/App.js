@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from './component/Form';
+import validForm from './component/validForm';
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -75,9 +76,33 @@ const postNewUser = newUser => {
 //Event handlers
 
 const onInputChange = evt => {
-  const fname = evt.target.fname
-  const lname = evt.target.lname
+  const name = evt.target.name
   const value = evt.target.value
+
+  //yup validation
+
+  yup
+  .reach(validForm, name)
+  .validate(value)
+  .then(valid => {
+    setFormErrors({
+      ...formErrors,
+      [name]: ''
+    })
+  })
+  .catch(err => {
+    setFormErrors({
+      ...formErrors,
+      [name]: err.errors[0]
+    })
+  })
+  
+//Successful or not set state to the new value
+  setFormValues({
+    ...formValues,
+    [name]: value // NOT AN ARRAY
+  })
+
 }
 
 

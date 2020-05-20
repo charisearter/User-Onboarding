@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const ValidForm = yup.object().shape ({
+const validForm = yup.object().shape ({
     fname: yup.string()
         .trim()
         .min(2, 'The first name must be at least two characters long')
@@ -21,4 +21,4 @@ const ValidForm = yup.object().shape ({
   
 })
 
-export default ValidForm
+export default validForm
