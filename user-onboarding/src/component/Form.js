@@ -17,6 +17,7 @@ function Form(props) {
        <form className='form-container' onSubmit={onSubmit}>
            <div className='form-text'>
                <h2>Title Goes Here Maybe</h2>
+
                {/* // Text Input // */}
                <label>
                    Name:&nbsp;
@@ -25,28 +26,35 @@ function Form(props) {
                    onChange={onInputChange}
                    name='name'
                    type='text'
+                   placeholder='Fluffy McFlooferkin'
                    />
                 </label>
 
-               <label>
+               <label htmlFor='emailInput'>
                    Email:&nbsp;
                    <input 
                    value={values.email}
                    onChange={onInputChange}
+                   id='emailInput'
                    name='email'
                    type='email'
+                   placeholder='youremail@email.com'
                    />
                 </label>
 
-               <label>
+               <label htmlFor='passwordInput'>
                    Password &nbsp;
                    <input 
                    value={values.password}
                    onChange={onInputChange}
+                   id='passwordInput'
                    name='password'
-                   type='text'
+                   type='password'
+                   placeholder='Password'
                    />
                 </label>
+
+                {/* // Errors // */}
             <div className='errors'>
                 <div> {errors.name} </div>
                 <div> {errors.email} </div>
@@ -56,17 +64,19 @@ function Form(props) {
 
             <div className='form-checkbox'>
                {/* // Checkbox // */}
-               <label>
-                   Terms of Service &nbsp;
+               <label htmlFor='termsInput'>
+                   <h3>Do you agree to the Terms of Service</h3> &nbsp;
                    <input 
                    type='checkbox'
                    name='terms'
+                   id='termsInput'
                    onChange={onCheckboxChange}
                    checked={values}
                    />
                 </label>
             </div>{/* // Ends form checkbox div*/}
-            
+
+             {/* // Submit Button // */}
             <div className='submit-btn'>
                 {/* //disable button until form is complete */}
                 <button className='btn' disabled={disabled}>
