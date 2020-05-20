@@ -20,13 +20,24 @@ function Form(props) {
 
                {/* // Text Input // */}
                <label>
-                   Name:&nbsp;
+                   First Name:&nbsp;
                    <input 
-                   value={values.name}
+                   value={values.fname}
                    onChange={onInputChange}
-                   name='name'
+                   name='first name'
                    type='text'
-                   placeholder='Fluffy McFlooferkin'
+                   placeholder='Fluffy'
+                   />
+                </label>
+
+                <label>
+                   Last Name:&nbsp;
+                   <input 
+                   value={values.lname}
+                   onChange={onInputChange}
+                   name='last name'
+                   type='text'
+                   placeholder='McFlooferkins'
                    />
                 </label>
 
