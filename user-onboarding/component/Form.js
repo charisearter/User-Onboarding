@@ -14,7 +14,7 @@ function Form(props) {
     //Name, Email, password, Terms of Service (checkbox) and Submit button
     //Name, Email, Password and TOS required before Submit is available
     return (
-       <form>
+       <form className='form-container' onSubmit={onSubmit}>
            <div className='form-text'>
                <h2>Title Goes Here Maybe</h2>
                {/* // Text Input // */}
@@ -47,6 +47,12 @@ function Form(props) {
                    type='text'
                    />
                 </label>
+            <div className='errors'>
+                <div> {errors.name} </div>
+                <div> {errors.email} </div>
+                <div> {errors.password} </div>
+                <div> {errors.terms} </div>
+            </div>
 
             <div className='form-checkbox'>
                {/* // Checkbox // */}
@@ -54,7 +60,7 @@ function Form(props) {
                    Terms of Service &nbsp;
                    <input 
                    type='checkbox'
-                   name='TOS'
+                   name='terms'
                    onChange={onCheckboxChange}
                    checked={values}
                    />
@@ -62,6 +68,7 @@ function Form(props) {
             </div>{/* // Ends form checkbox div*/}
             
             <div className='submit-btn'>
+                {/* //disable button until form is complete */}
                 <button className='btn' disabled={disabled}>
                     Submit
                 </button>
