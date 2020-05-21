@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from './component/Form';
 import validForm from './component/validForm';
@@ -15,7 +15,7 @@ const initialFormValues = {
   password: '',
 
   //checkbox input TOS
-  terms: ''
+  terms: false
 }
 
 const initialFormErrors = {
@@ -23,7 +23,7 @@ const initialFormErrors = {
   lname: '',
   email: '',
   password: '',
-  terms: ''
+  terms: false
 }
 
 //area for users
@@ -46,18 +46,6 @@ const [ formErrors, setFormErrors ] = useState(initialFormErrors)
 //set state for disabled button
 const [ disabled, setDisabled ] = useState(initialDisabled)
 
-//get the users
-
-// const getUsers = () => {
-//   axios.get('https://reqres.in/api/users')
-//   .then(res => {
-//     setUsers(res.data.data)
-//     console.log(res.data.data)
-//   })
-//   .catch(err => {
-//     debugger
-//   })
-// }
 
 const postNewUser = newUser => {
   axios.post('https://reqres.in/api/users', newUser)
@@ -75,9 +63,11 @@ const postNewUser = newUser => {
 
 //Event handlers
 
-const onInputChange = evt => {
-  const name = evt.target.name //name is targets name
-  const value = evt.target.value //value is targets value
+const onInputChange = e => {
+  
+    const { name } = e.target;
+    const { value } = e.target;
+    
 
   //yup validation
 
@@ -98,27 +88,24 @@ const onInputChange = evt => {
   })
 
 //Successful or not set state to the new value
-  setFormValues({
-    ...formValues,
-    [name]: value // NOT AN ARRAY
-  })
+  setFormValues({ ...formValues, [name]: value })
 
 }
 
-const onCheckboxChange = evt => {
-  const { name } = evt.target //name is target name
-  const { checked } = evt.target //checked to see if target is checked off
+// const onCheckboxChange = evt => {
+//   const { name } = evt.target.name //name is target name
+//   const { checked } = evt.target //checked to see if target is checked off
 
-  setFormValues({ //set new state for form
-    ...formValues, //copy form values
+//   setFormValues({ //set new state for form
+//     ...formValues, //copy form values
     
-    //want to check and see if terms is checked
-    terms: { //overide form value
-      ...formValues.terms, //copy current terms
-      [name]: checked,  // override
-    }
-  })
-}
+//     //want to check and see if terms is checked
+//     terms: { //overide form value
+//       ...formValues.terms, //copy current terms
+//       [name]: checked,  // override
+//     }
+//   })
+// }
 
   const onSubmit = evt => {
     evt.preventDefault()
@@ -136,18 +123,24 @@ const onCheckboxChange = evt => {
 }
 
 //side effect
-
+useEffect(() => {
+  //  ADJUST THE STATUS OF `disabled` EVERY TIME `formValues` CHANGES
+  validForm.isValid(formValues)
+    .then(valid => {
+      setDisabled(!valid)
+    })
+}, [formValues])
 
   return (
     <div>
-        stuff is here
+        
       <Form 
       values={formValues}
       onInputChange={onInputChange}
       onSubmit={onSubmit}
       disabled={disabled}
       errors={formErrors}
-      onCheckboxChange={onCheckboxChange}
+      //onCheckboxChange={onCheckboxChange}
       />
 
     </div>

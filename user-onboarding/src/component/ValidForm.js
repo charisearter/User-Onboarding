@@ -17,7 +17,7 @@ const validForm = yup.object().shape ({
     email: yup.string()
         .email('The email must be a valid email address')
         .required('The email is a required field'),
-    terms: yup.boolean().required('Agreeing to the Terms of Service is required'),
+    terms: yup.boolean(true).required('Agreeing to the Terms of Service is required'),
   
 })
 
