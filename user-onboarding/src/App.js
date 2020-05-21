@@ -15,7 +15,7 @@ const initialFormValues = {
   password: '',
 
   //checkbox input TOS
-  terms: false
+  terms: ''
 }
 
 const initialFormErrors = {
@@ -23,7 +23,7 @@ const initialFormErrors = {
   lname: '',
   email: '',
   password: '',
-  terms: false
+  terms: ''
 }
 
 //area for users
@@ -65,47 +65,47 @@ const postNewUser = newUser => {
 
 const onInputChange = e => {
   
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name } = e.target.name;
+    const { value } = e.target.value;
     
 
   //yup validation
 
   yup
-  .reach(validForm, name)
-  .validate(value)
+  .reach(validForm, e.target.name)
+  .validate(e.target.value)
   .then(valid => {
     setFormErrors({
       ...formErrors,
-      [name]: ''
+      [e.target.name]: ''
     })
   })
   .catch(err => {
     setFormErrors({
       ...formErrors,
-      [name]: err.errors[0]
+      [e.target.name]: err.errors[0]
     })
   })
 
 //Successful or not set state to the new value
-  setFormValues({ ...formValues, [name]: value })
+  setFormValues({ ...formValues, [e.target.name]: e.target.value })
 
 }
 
-const onCheckboxChange = e => {
-  const { name } = e.target //name is target name
-  const { checked } = e.target //checked to see if target is checked off
+// const onCheckboxChange = e => {
+//   const { name } = e.target //name is target name
+//   const { checked } = e.target //checked to see if target is checked off
 
-  setFormValues({ //set new state for form
-    ...formValues, //copy form values
+//   setFormValues({ //set new state for form
+//     ...formValues, //copy form values
     
-    //want to check and see if terms is checked
-    terms: { //overide form value
-      ...formValues.terms, //copy current terms
-      [name]: checked,  // override
-    }
-  })
-}
+//     //want to check and see if terms is checked
+//     terms: { //overide form value
+//       ...formValues.terms, //copy current terms
+//       [name]: checked,  // override
+//     }
+//   })
+// }
 
   const onSubmit = evt => {
     evt.preventDefault()

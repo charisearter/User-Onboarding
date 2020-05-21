@@ -6,7 +6,7 @@ function Form(props) {
         values, 
         onInputChange, 
         onSubmit, 
-        onCheckboxChange, 
+        //onCheckboxChange, 
         disabled, 
         errors, 
     } = props;
@@ -55,7 +55,7 @@ function Form(props) {
                 </label>
 
                <label htmlFor='passwordInput'>
-                   Password &nbsp;
+                   Password: &nbsp;
                    <input 
                    value={values.password}
                    onChange={onInputChange}
@@ -78,13 +78,13 @@ function Form(props) {
             <div className='form-checkbox'>
                
                <label htmlFor='termsInput'>
-                   <h3>Do you agree to the Terms of Service</h3> &nbsp;
+                   <h4>Do you agree to the Terms of Service</h4> &nbsp;
                    <input 
                    type='checkbox'
                    name='terms'
                    id='termsInput'
-                   checked={values.terms}
-                   onChange={onCheckboxChange}
+                   checked={false}
+                   onChange={onInputChange}
                    />
                 </label>
             </div>
