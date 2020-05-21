@@ -76,8 +76,8 @@ const postNewUser = newUser => {
 //Event handlers
 
 const onInputChange = evt => {
-  const name = evt.target.name
-  const value = evt.target.value
+  const name = evt.target.name //name is targets name
+  const value = evt.target.value //value is targets value
 
   //yup validation
 
@@ -96,7 +96,7 @@ const onInputChange = evt => {
       [name]: err.errors[0]
     })
   })
-  
+
 //Successful or not set state to the new value
   setFormValues({
     ...formValues,
@@ -105,14 +105,50 @@ const onInputChange = evt => {
 
 }
 
+const onCheckboxChange = evt => {
+  const { name } = evt.target //name is target name
+  const { checked } = evt.target //checked to see if target is checked off
+
+  setFormValues({ //set new state for form
+    ...formValues, //copy form values
+    
+    terms: { //overide form value
+      ...formValues.terms, //copy current terms
+      [name]: checked,  // override
+    }
+  })
+
+  const onSubmit = evt => {
+    evt.preventDefault()
+
+    const newUser = {
+      fname: formValues.fname.trim(),
+      lname: formValues.lname.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      terms: formValues.terms,
+     
+    }
+    // 🔥 STEP 10- POST NEW FRIEND USING HELPER
+    postNewUser(newUser)
+}
+
 
   return (
     <div>
 
-      <Form />
+      <Form 
+      values={formValues}
+      onInputChange={onInputChange}
+      onSubmit={onSubmit}
+      disabled={disabled}
+      errors={formErrors}
+      onCheckboxChange={onCheckboxChange}
+      />
 
     </div>
   );
+}
 }
 
 export default App;
