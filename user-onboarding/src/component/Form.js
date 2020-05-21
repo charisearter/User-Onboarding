@@ -35,6 +35,7 @@ function Form(props) {
                    <input 
                    value={values.lname}
                    onChange={onInputChange}
+                   id='lname'
                    name='lname'
                    type='text'
                    placeholder='McFlooferkins'
@@ -67,13 +68,14 @@ function Form(props) {
 
                 {/* // Errors // */}
             <div className='errors'>
-                <div> {errors.name} </div>
+                <div> {errors.fname} </div>
+                <div> {errors.lname} </div>
                 <div> {errors.email} </div>
                 <div> {errors.password} </div>
                 <div> {errors.terms} </div>
             </div>
 
-            {/* <div className='form-checkbox'>
+            <div className='form-checkbox'>
                
                <label htmlFor='termsInput'>
                    <h3>Do you agree to the Terms of Service</h3> &nbsp;
@@ -85,7 +87,7 @@ function Form(props) {
                    onChange={onCheckboxChange}
                    />
                 </label>
-            </div> */}
+            </div>
 
              {/* // Submit Button // */}
             <div className='submit-btn'>

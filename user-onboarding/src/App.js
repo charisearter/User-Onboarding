@@ -92,20 +92,20 @@ const onInputChange = e => {
 
 }
 
-// const onCheckboxChange = evt => {
-//   const { name } = evt.target.name //name is target name
-//   const { checked } = evt.target //checked to see if target is checked off
+const onCheckboxChange = e => {
+  const { name } = e.target //name is target name
+  const { checked } = e.target //checked to see if target is checked off
 
-//   setFormValues({ //set new state for form
-//     ...formValues, //copy form values
+  setFormValues({ //set new state for form
+    ...formValues, //copy form values
     
-//     //want to check and see if terms is checked
-//     terms: { //overide form value
-//       ...formValues.terms, //copy current terms
-//       [name]: checked,  // override
-//     }
-//   })
-// }
+    //want to check and see if terms is checked
+    terms: { //overide form value
+      ...formValues.terms, //copy current terms
+      [name]: checked,  // override
+    }
+  })
+}
 
   const onSubmit = evt => {
     evt.preventDefault()
