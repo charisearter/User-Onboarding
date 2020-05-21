@@ -103,7 +103,7 @@ const formSubmit = (e) => {
 };
     return (
        <form className='form-container' onSubmit={formSubmit}>
-           <div className='form-text'>
+           <div className='all-center'>
                <h2>Fill out this form, please.</h2>
 
                {/* // Text Input // */}
