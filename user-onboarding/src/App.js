@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Form from './component/Form';
 import validForm from './component/validForm';
@@ -48,21 +48,21 @@ const [ disabled, setDisabled ] = useState(initialDisabled)
 
 //get the users
 
-const getUsers = () => {
-  axios.get('https://reqres.in/api/users')
-  .then(res => {
-    setUsers(res.data.data)
-    console.log(res.data.data)
-  })
-  .catch(err => {
-    debugger
-  })
-}
+// const getUsers = () => {
+//   axios.get('https://reqres.in/api/users')
+//   .then(res => {
+//     setUsers(res.data.data)
+//     console.log(res.data.data)
+//   })
+//   .catch(err => {
+//     debugger
+//   })
+// }
 
 const postNewUser = newUser => {
   axios.post('https://reqres.in/api/users', newUser)
   .then(res => {
-    setUsers(res.data.data)
+    setUsers([res.data.data, ...users])
     console.log(res.data.data)
   })
   .catch(err => {
@@ -112,6 +112,7 @@ const onCheckboxChange = evt => {
   setFormValues({ //set new state for form
     ...formValues, //copy form values
     
+    //want to check and see if terms is checked
     terms: { //overide form value
       ...formValues.terms, //copy current terms
       [name]: checked,  // override
@@ -126,12 +127,14 @@ const onCheckboxChange = evt => {
       lname: formValues.lname.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      terms: formValues.terms,
+      terms: setDisabled(true)
      
     }
-    // 🔥 STEP 10- POST NEW FRIEND USING HELPER
+
     postNewUser(newUser)
 }
+
+//side effect
 
 
   return (
