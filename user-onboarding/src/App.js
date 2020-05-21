@@ -15,7 +15,7 @@ const initialFormValues = {
   password: '',
 
   //checkbox input TOS
-  terms: false
+  terms: ''
 }
 
 const initialFormErrors = {
@@ -23,7 +23,7 @@ const initialFormErrors = {
   lname: '',
   email: '',
   password: '',
-  terms: false
+  terms: ''
 }
 
 //area for users
@@ -118,6 +118,7 @@ const onCheckboxChange = evt => {
       [name]: checked,  // override
     }
   })
+}
 
   const onSubmit = evt => {
     evt.preventDefault()
@@ -139,7 +140,7 @@ const onCheckboxChange = evt => {
 
   return (
     <div>
-
+        stuff is here
       <Form 
       values={formValues}
       onInputChange={onInputChange}
@@ -152,6 +153,6 @@ const onCheckboxChange = evt => {
     </div>
   );
 }
-}
+
 
 export default App;

@@ -82,7 +82,7 @@ function Form(props) {
                    name='terms'
                    id='termsInput'
                    onChange={onCheckboxChange}
-                   checked={values}
+                   checked={values.terms}
                    />
                 </label>
             </div>{/* // Ends form checkbox div*/}
